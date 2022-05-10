@@ -2,7 +2,7 @@ const fs = require("fs");
 const http = require("http");
 const url = require("url");
 
-const replaceTemplate=require('./modules/replaceTemplate');
+const replaceTemplate = require("./modules/replaceTemplate");
 
 ////////////////////////////////
 /////FILES
@@ -70,7 +70,7 @@ const server = http.createServer((req, res) => {
     });
     // console.log(query);
     const product = dataObj[query.id];
-    const output=replaceTemplate(templateProduct,product);
+    const output = replaceTemplate(templateProduct, product);
     res.end(output);
   } //API
   else if (pathname === "/api") {
