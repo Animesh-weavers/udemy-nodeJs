@@ -65,9 +65,9 @@ const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, "utf-8");
 const dataObj = JSON.parse(data);
 
 const server = http.createServer((req, res) => {
-  const pathName = req.url;
+  const { query, pathname } = url.parse(req.url, true);
   //Overview Page
-  if (pathName === "/" || pathName === "/overview") {
+  if (pathname === "/" || pathname === "/overview") {
     res.writeHead(200, {
       "Content-type": "text/html",
     });
@@ -78,17 +78,20 @@ const server = http.createServer((req, res) => {
     res.end(output);
   }
   //Product Page
-  else if (pathName === "/product") {
-    res.end("PRODUCT");
-  } //API
-  else if (pathName === "/api") {
-    // res.write(__dirname);
-    fs.readFile(`${__dirname}/dev-data/data.json`, "utf-8", (err, data) => {
-      res.writeHead(200, {
-        "Content-type": "application/json",
-      });
-      res.end(data);
+  else if (pathname === "/product") {
+    res.writeHead(200, {
+      "Content-type": "text/html",
     });
+    // console.log(query);
+    const product = dataObj[query.id];
+    const output=replaceTemplate(templateProduct,product);
+    res.end(output);
+  } //API
+  else if (pathname === "/api") {
+    res.writeHead(200, {
+      "Content-type": "application/json",
+    });
+    res.end(data);
   }
   //Not Found Page
   else {
