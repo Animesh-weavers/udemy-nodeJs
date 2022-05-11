@@ -58,7 +58,7 @@ app.get('/api/v1/tours/:id', (req, res) => {
   //whenever we can multiply string to number 1 then string convert to number and vice versa
   const id = req.params.id * 1;
   const tour = tours.filter((el) => el.id === id);
-  if (tour.length<=0) {
+  if (tour.length <= 0) {
     return res.status(404).json({
       status: 'fail',
       message: 'Invalid ID',
@@ -73,7 +73,34 @@ app.get('/api/v1/tours/:id', (req, res) => {
   });
 });
 
-app.patch()
+app.patch('/api/v1/tours/:id', (req, res) => {
+  if (req.params.id * 1 > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour: 'updated tour..',
+    },
+  });
+});
+app.delete('/api/v1/tours/:id', (req, res) => {
+  if (req.params.id * 1 > tours.length) {
+    return res.status(404).json({
+      status: 'fail',
+      message: 'Invalid ID',
+    });
+  }
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
 
 app.listen(port, () => {
   console.log(`App running on port ${port}....`);
