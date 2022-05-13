@@ -37,9 +37,9 @@ const tourSchema = new mongoose.Schema({
 const Tour = mongoose.model('Tour', tourSchema);
 
 const testTour = new Tour({
-  name: 'The FOrest Hiker',
-  rating: 4.7,
-  price: 497,
+  name: 'The park camper',
+  rating: 4.8,
+  price: 500,
 }); ///Instance of the tour model
 
 testTour
