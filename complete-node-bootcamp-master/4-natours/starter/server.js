@@ -32,9 +32,20 @@ const tourSchema = new mongoose.Schema({
     type: Number,
     required: [true, 'A tour must have a price'],
   },
-});  //Schema
+}); //Schema
 
-const Tour=mongoose.model('Tour',tourSchema);
+const Tour = mongoose.model('Tour', tourSchema);
+
+const testTour = new Tour({
+  name: 'The FOrest Hiker',
+  rating: 4.7,
+  price: 497,
+}); ///Instance of the tour model
+
+testTour
+  .save() //save testTour Data
+  .then((doc) => console.log(doc))
+  .catch((err) => console.log(err));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
