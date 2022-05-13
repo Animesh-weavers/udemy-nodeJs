@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const fs = require('fs');
 const morgan = require('morgan');
-const port = 3000;
+
 
 //Middlewares
 app.use(morgan('dev'));
@@ -23,8 +23,4 @@ const userRouter = require('./routes/userRoutes');
 app.use('/api/v1/tours', tourRouter); //using middleware
 app.use('/api/v1/users', userRouter); //using middleware
 
-//start the server on the given port
-
-app.listen(port, () => {
-  console.log(`App running on port ${port}....`);
-});
+module.exports=app;
