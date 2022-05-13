@@ -3,7 +3,6 @@ const app = express();
 const fs = require('fs');
 const morgan = require('morgan');
 
-
 //Middlewares
 app.use(morgan('dev'));
 app.use(express.json());
@@ -23,4 +22,4 @@ const userRouter = require('./routes/userRoutes');
 app.use('/api/v1/tours', tourRouter); //using middleware
 app.use('/api/v1/users', userRouter); //using middleware
 
-module.exports=app;
+module.exports = app;
